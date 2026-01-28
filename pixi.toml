@@ -132,7 +132,5 @@ dual-quaternions = "*"   # sfm
 pypose = "*"             # sfm
 fairscale = "*"          # sam3
 
-
-
 [pypi-options]
 no-build-isolation = ["gsplat", "fused-ssim", "fused-bilagrid", "nerfview", "pycolmap"]

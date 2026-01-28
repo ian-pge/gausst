@@ -1,6 +1,6 @@
 # Gausst
 
-Unified environment for Depth-Anything-3, gsplat, sam3, and sfm.
+Unified environment for gausst.
 
 ## Installation
 

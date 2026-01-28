@@ -16,10 +16,6 @@ scripts = []
 [tasks]
 # Common tasks or specific pipeline wrappers could be added here
 test-imports = "python -c 'import torch; import gsplat; import sam3; import colmap; import pycolmap; import glomap; import hloc; import depth_anything_3; print(\"Imports successful!\")'"
-build-ceres = "bash pixi_scripts/build_ceres.sh"
-build-colmap = "bash pixi_scripts/build_colmap.sh"
-build-pycolmap = "bash pixi_scripts/build_pycolmap.sh"
-build-glomap = "bash pixi_scripts/build_glomap.sh"
 
 [dependencies]
 python = "3.10.*"

@@ -61,4 +61,35 @@ if [ ! -f "third_party/DPVO/dpvo.pth" ]; then
       "https://github.com/princeton-vl/DPVO/releases/download/v1.0/dpvo.pth" && echo "✅ DPVO Weights Downloaded"
 else
     echo "✅ DPVO Weights already exist"
+    echo "✅ DPVO Weights already exist"
+fi
+
+# Depth-Anything-3 Weights
+DA3_WEIGHTS_DIR="submodules/Depth-Anything-3/da3_streaming/weights"
+mkdir -p "$DA3_WEIGHTS_DIR"
+
+echo "Checking Depth-Anything-3 weights in $DA3_WEIGHTS_DIR..."
+
+# SALAD
+if [ ! -f "$DA3_WEIGHTS_DIR/dino_salad.ckpt" ]; then
+    echo "Downloading SALAD weights..."
+    wget -q -O "$DA3_WEIGHTS_DIR/dino_salad.ckpt" \
+      "https://github.com/serizba/salad/releases/download/v1.0.0/dino_salad.ckpt" && echo "✅ SALAD Downloaded"
+else
+    echo "✅ SALAD already exists"
+fi
+
+# DA3NESTED-GIANT-LARGE-1.1
+if [ ! -f "$DA3_WEIGHTS_DIR/config.json" ]; then
+    echo "Downloading DA3 Config..."
+    wget -q -O "$DA3_WEIGHTS_DIR/config.json" \
+      "https://huggingface.co/depth-anything/DA3NESTED-GIANT-LARGE-1.1/resolve/main/config.json" && echo "✅ DA3 Config Downloaded"
+fi
+
+if [ ! -f "$DA3_WEIGHTS_DIR/model.safetensors" ]; then
+    echo "Downloading DA3 Model (~6.8 GB)..."
+    wget -q -O "$DA3_WEIGHTS_DIR/model.safetensors" \
+      "https://huggingface.co/depth-anything/DA3NESTED-GIANT-LARGE-1.1/resolve/main/model.safetensors" && echo "✅ DA3 Model Downloaded"
+else
+    echo "✅ DA3 Model already exists"
 fi

@@ -1,0 +1,142 @@
+[workspace]
+name = "gausst"
+version = "0.1.0"
+description = "Unified environment for Depth-Anything-3, gsplat, sam3, and sfm"
+authors = ["Gausst Builder"]
+channels = ["conda-forge", "nvidia"]
+platforms = ["linux-64"]
+
+[system-requirements]
+linux = "5.10"
+cuda = "12"
+
+[activation]
+scripts = []
+
+[tasks]
+# Common tasks or specific pipeline wrappers could be added here
+test-imports = "python -c 'import torch; import gsplat; import sam3; import colmap; import pycolmap; import glomap; import hloc; import depth_anything_3; print(\"Imports successful!\")'"
+build-ceres = "bash pixi_scripts/build_ceres.sh"
+build-colmap = "bash pixi_scripts/build_colmap.sh"
+build-pycolmap = "bash pixi_scripts/build_pycolmap.sh"
+build-glomap = "bash pixi_scripts/build_glomap.sh"
+
+[dependencies]
+python = "3.10.*"
+pip = "*"
+scikit-build-core = "*"
+# Core ML - Prioritize pytorch-gpu from conda-forge/nvidia/pytorch
+# We leave 'pytorch-gpu' generic to let solver pick best match, but 'sam3' asked for >=2.5.
+# 'sfm' asked for 12.1 specific, but others need 12.4. We target ~12.4.
+pytorch-gpu = ">=2.5" 
+torchvision = "*"
+cuda-nvcc = "*"
+libcublas-dev = "*"
+libcusolver-dev = "*"
+libcusparse-dev = "*"
+libcudss-dev = "*"
+cuda-cudart-dev = "*"
+libcurand-dev = "*"
+cxx-compiler = "*"
+gcc_linux-64 = ">=14.3"
+gxx_linux-64 = ">=14.3"
+
+# Common libraries (used by multiple projects)
+numpy = "<2"             # gsplat, sfm, sam3, Depth-Anything-3
+scikit-learn = "*"       # sfm, sam3
+matplotlib = "*"         # sfm, sam3, gsplat
+opencv = "*"             # sfm, sam3, Depth-Anything-3 (as opencv-python)
+pillow = "*"             # sfm, sam3, gsplat
+pycocotools = "*"        # sam3
+tqdm = "*"               # sfm, gsplat
+einops = "*"             # sam3
+trimesh = "*"            # gsplat, sfm
+huggingface_hub = "*"    # sam3, Depth-Anything-3
+requests = "*"           # sfm
+pyyaml = "*"             # gsplat, sam3
+typing_extensions = "*"  # gsplat
+rich = "*"               # gsplat
+tensorboard = "*"        # gsplat
+imageio = "*"            # gsplat, sfm
+ninja = "*"              # gsplat (build), sfm (build)
+cmake = "*"              # gsplat (build), sfm (build)
+pybind11 = ">=3.0.1"     # gsplat, sfm
+setuptools = "*"         # gsplat
+wheel = "*"              # gsplat
+make = "*"               # sfm
+git = "*"                # sfm
+glm = "*"                # gsplat
+
+# Web/API
+fastapi = "*"
+uvicorn = "*"
+typer = "*"
+
+# 3D / Geom
+open3d = "*"
+plyfile = "*"
+# Note: pycolmap version might be tricky. sfm wants pypi >=0.6? gsplat wants git rev. 
+# We'll try conda first. If it fails, move to pypi.
+
+# SFM / Solver specific (from sfm project)
+ceres-solver = "*"       # sfm (for colmap/glomap)
+suitesparse = "*"        # sfm
+boost = "*"              # sfm
+libboost-devel = "*"     # sfm
+libboost-python-devel = "*" # sfm (for pycolmap)
+eigen = "*"              # sfm
+glog = "*"               # sfm
+gflags = "*"             # sfm
+ffmpeg = "*"             # sfm
+h5py = "*"               # sfm
+pyopengl = "*"           # sfm
+libgl-devel = "*"        # sfm
+libglu = "*"             # sfm
+cgal = "*"               # sfm
+freeimage = "*"          # sfm
+glew = "*"               # sfm
+jaxtyping = "*"          # gsplat, sam3
+torchmetrics = "*"       # gsplat
+tensorly = "*"           # gsplat
+splines = "*"            # gsplat
+timm = "*"               # sam3
+sympy = "*"              # sam3
+piexif = "*"             # sfm
+pillow-heif = "*"        # sfm
+kornia = "*"             # sfm
+ultralytics = "*"        # sfm
+pysocks = "*"            # sfm
+addict = "*"             # sam3
+faiss-gpu = "*"          # sam3
+prettytable = "*"        # sam3
+numba = "*"              # sam3, sfm
+moviepy = "*"            # sam3
+safetensors = "*"        # sam3, Depth-Anything-3
+xformers = "*"           # gsplat (optional), sam3 (optional)
+
+[pypi-dependencies]
+# Local Editable Projects
+gsplat = { path = "gsplat", editable = true }
+sam3 = { path = "sam3", editable = true }
+# Depth-Anything-3 defines a package in src but uses pyproject.toml
+depth-anything-3 = { path = "Depth-Anything-3", editable = true }
+
+# Git Dependencies
+# From gsplat
+nerfview = { git = "https://github.com/nerfstudio-project/nerfview", rev = "4538024fe0d15fd1a0e4d760f3695fc44ca72787" }
+fused-ssim = { git = "https://github.com/rahul-goel/fused-ssim", rev = "328dc9836f513d00c4b5bc38fe30478b4435cbb5" }
+fused-bilagrid = { git = "https://github.com/harry7557558/fused-bilagrid", rev = "90f9788e57d3545e3a033c1038bb9986549632fe" }
+
+# From sfm
+hloc = { git = "https://github.com/cvg/Hierarchical-Localization.git" }
+lightglue = { git = "https://github.com/cvg/LightGlue.git" }
+decord = "*"           # sam3 (video handling)
+hf_transfer = "*"        # sam3
+dual-quaternions = "*"   # sfm
+pypose = "*"             # sfm
+fairscale = "*"          # sam3
+
+
+
+[pypi-options]
+no-build-isolation = ["gsplat", "fused-ssim", "fused-bilagrid", "nerfview", "pycolmap"]

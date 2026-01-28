@@ -1,0 +1,19 @@
+# Pixi environment
+.pixi
+*.lock
+!pixi.lock
+
+# Build directories and artifacts
+build/
+cmake-build-*/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Local build sources (managed by scripts)
+colmap/
+glomap/
+ceres-solver/
+
+# Logs
+*.log

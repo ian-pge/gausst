@@ -17,3 +17,5 @@ ceres-solver/
 
 # Logs
 *.log
+
+dataset/

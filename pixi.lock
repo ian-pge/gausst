@@ -624,9 +624,9 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/3f/0e/fa3b193432cfc60c93b42f3be03365f5f909d2b3ea410295cf36df739e31/widgetsnbextension-4.0.15-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c8/60/4ea0d6df0b497d51bf2ef87eaab0eb26f8bc3b3313c012da5df3383cced9/yourdfpy-0.0.60-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fd/e5/6d36f92a197c3c17729a2125e29c169f460538a7d939a27eaaa6dcfcba8e/zstandard-0.25.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl
-      - pypi: ./Depth-Anything-3
-      - pypi: ./gsplat
-      - pypi: ./sam3
+      - pypi: ./submodules/Depth-Anything-3
+      - pypi: ./submodules/gsplat
+      - pypi: ./submodules/sam3
 packages:
 - conda: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-7_kmp_llvm.conda
   build_number: 7
@@ -1742,7 +1742,7 @@ packages:
   sha256: 51997f20be8958e23b7c4061ba45d0efcd86bffd5fe81c695d0befee0d442976
   requires_dist:
   - numpy>=1.14.0
-- pypi: ./Depth-Anything-3
+- pypi: ./submodules/Depth-Anything-3
   name: depth-anything-3
   version: 0.0.0
   sha256: 3e178d62b8ca674ee4685a5c2a89ab8363e204b9af24d7313bdb8e3c03926544
@@ -2636,7 +2636,7 @@ packages:
   - pkg:pypi/grpcio?source=hash-mapping
   size: 884523
   timestamp: 1740918642355
-- pypi: ./gsplat
+- pypi: ./submodules/gsplat
   name: gsplat
   version: 1.5.3
   sha256: 87927805d4f2f47a2801f64bfc68be7627e3287d7a38f027f590ce9217a09318
@@ -7672,7 +7672,7 @@ packages:
   - pkg:pypi/safetensors?source=hash-mapping
   size: 445728
   timestamp: 1763569626962
-- pypi: ./sam3
+- pypi: ./submodules/sam3
   name: sam3
   version: 0.1.0
   sha256: 255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366

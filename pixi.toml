@@ -116,10 +116,10 @@ xformers = "*"           # gsplat (optional), sam3 (optional)
 
 [pypi-dependencies]
 # Local Editable Projects
-gsplat = { path = "gsplat", editable = true }
-sam3 = { path = "sam3", editable = true }
+gsplat = { path = "submodules/gsplat", editable = true }
+sam3 = { path = "submodules/sam3", editable = true }
 # Depth-Anything-3 defines a package in src but uses pyproject.toml
-depth-anything-3 = { path = "Depth-Anything-3", editable = true }
+depth-anything-3 = { path = "submodules/Depth-Anything-3", editable = true }
 
 # Git Dependencies
 # From gsplat
